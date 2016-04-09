@@ -21,6 +21,7 @@ from zeroconf import (
     ServiceBrowser,
     ServiceInfo,
     ServiceStateChange,
+    DNSAddress,
     Zeroconf,
 )
 
@@ -204,3 +205,9 @@ def test_dnstext_repr_works():
     # from working when the text was longer than 10 bytes
     text = DNSText('irrelevant', None, 0, 0, b'12345678901')
     repr(text)
+
+
+def test_dnsaddress_repr_works():
+    # ipv6 addresses not treated properly
+    dnsaddr = DNSAddress('aaaa',r._TYPE_A,r._CLASS_IN,60,'127.0.0.1')
+    repr(dnsaddr)
